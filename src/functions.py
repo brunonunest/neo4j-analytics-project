@@ -42,7 +42,7 @@ def insertCreditCard():
     graph.run(query)
 
 #calculates a score from Fidelity relation data between client category and profile, adds it to profile node
-#ONGOING
+#ONGOING - Maybe not needed because fidelity data values tend to be similar for cancel X active cards
 def addFidelityScore():
     query = "MATCH ()-[r:FIDELITY]->() "\
             "WITH  "\
