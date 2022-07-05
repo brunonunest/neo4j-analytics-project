@@ -13,10 +13,10 @@ def insertFidelityRelClientProfile():
     query = "LOAD CSV WITH HEADERS FROM 'file:///clientsheet.csv' AS line "\
             "MATCH (c:ClientCategory {label: line.Category}) "\
             "MERGE (cp:ClientProfile {clientnum: line.CLIENTNUM}) "\
-            "WITH toFloat(replace(line.Age, ',', '.')) as age, toFloat(replace(line.Dependents, ',', '.')) as dependents, cp, line "\
+            "WITH toFloat(replace(line.Age, ',', '.')) as age, toFloat(replace(line.Dependents, ',', '.')) as dependents, cp, line, c "\
             "SET cp.age = age, cp.gender = line.Gender, cp.dependents = dependents, cp.marital_status = line.MaritalStatus "\
             "MERGE (cp)-[r:FIDELITY]->(c) "\
-            "WITH toFloat(replace(line.ProductsSubscribed, ',', '.')) as products_subscribed, toFloat(replace(line.Inactivity12months, ',', '.')) as inactivity12, toFloat(replace(line.CustomerSupportRequests12months, ',', '.')) as support_requests12, toFloat(replace(line.MonthsasClient, ',', '.')) as months_as_client "\
+            "WITH toFloat(replace(line.ProductsSubscribed, ',', '.')) as products_subscribed, toFloat(replace(line.Inactivity12months, ',', '.')) as inactivity12, toFloat(replace(line.CustomerSupportRequests12months, ',', '.')) as support_requests12, toFloat(replace(line.MonthsasClient, ',', '.')) as months_as_client, r "\
             "SET r.products_subscribed = products_subscribed, r.inactivity12 = inactivity12, r.support_requests12 = support_requests12, r.months_as_client = months_as_client "
     graph.run(query)
 
@@ -42,6 +42,7 @@ def insertCreditCard():
     graph.run(query)
 
 #calculates a score from Fidelity relation data between client category and profile, adds it to profile node
+#ONGOING
 def addFidelityScore():
     query = "MATCH ()-[r:FIDELITY]->() "\
             "WITH  "\
