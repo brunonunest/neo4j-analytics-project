@@ -1,1 +1,0 @@
-#a menu to run the functions will be developed at the end, separating code in menu/functions/queries
