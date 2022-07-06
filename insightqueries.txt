@@ -1,0 +1,43 @@
+#01
+TOTAL CANCELLED
+MATCH (n:ClientCategory {label: "Cancelled"})-[r:FIDELITY]-(c:ClientProfile)-[r2:USES_CARD]-(cc:CreditCard) RETURN count(distinct(c))
+
+
+#02
+TOTAL ACTIVE
+MATCH (n:ClientCategory {label: "Client"})-[r:FIDELITY]-(c:ClientProfile)-[r2:USES_CARD]-(cc:CreditCard) RETURN count(distinct(c))
+
+
+#03
+FIDELITY AVG VALUES FOR CANCELLED X ACTIVE CARDS
+MATCH (n:ClientCategory {label: "Cancelled"})-[r:FIDELITY]-(c:ClientProfile) RETURN avg(r.inactivity12), avg(r.months_as_client), avg(r.products_subscribed), avg(r.support_requests12)
+
+
+#04
+CLIENT PROFILE AVG VALUES FOR CANCELLED X ACTIVE CARDS
+MATCH (n:ClientCategory {label: "Cancelled"})-[r:FIDELITY]-(c:ClientProfile) RETURN avg(c.age), avg(c.dependents)
+
+
+#05
+CLIENT PROFILE AVG MARRITAL AND GENDER FOR CANCELLED X ACTIVE CARDS
+MATCH (n:ClientCategory {label: "Cancelled"})-[r:FIDELITY]-(c:ClientProfile {gender: "M"}) RETURN count(c.gender)
+
+
+#06
+COUNT ANUAL INCOMES FOR CANCELLED X ACTIVE
+MATCH (n:ClientCategory {label: "Client"})-[r:FIDELITY]-(c:ClientProfile)-[r2:HAS_INCOME]-(s:Salary {anual: "$40K - $60K"}) RETURN count(s.anual)
+
+
+#07
+DIF BETWEEN COUNT EDUCATIONS FOR CANCEL X ACTIVE
+MATCH (n:ClientCategory {label: "Cancelled"})-[r:FIDELITY]-(c:ClientProfile)-[r2:HAS_EDUCATION]-(e:Education {label: 'Not informed'}) RETURN count(e.label)
+
+
+#08
+DIF BETWEEN AVG VALUES FROM CREDIT CARD CANCELLED X ACTIVE
+MATCH (n:ClientCategory {label: "Cancelled"})-[r:FIDELITY]-(c:ClientProfile)-[r2:USES_CARD]-(cc:CreditCard) RETURN avg(cc.available_limit), avg(cc.limit), avg(cc.number_txs12), avg(cc.number_txs_variation_Q4_Q1), avg(cc.txs12), avg(cc.txs_variation_Q4_Q1), avg(cc.used_limit)
+
+
+#09
+COUNT CARD TYPES FOR CANCEL X ACTIVE
+MATCH (n:ClientCategory {label: "Cancelled"})-[r:FIDELITY]-(c:ClientProfile)-[r2:USES_CARD]-(cc:CreditCard {type: "Gold"}) RETURN avg(r2.utilization_rate), count(distinct(c))
