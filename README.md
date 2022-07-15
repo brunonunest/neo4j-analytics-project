@@ -9,4 +9,4 @@ Data Analysis project example using neo4j + python
 5. The last function `createIndexes` needs to be run only once, to create the indexes + constraints
 6. After that check neo4j browser and bloom to see your database uploaded, you are ok to start your analysis and development
 
-**`insightqueries.txt` contains the queries used to get challenge insights and final solution presented on the `wtxchallengebruno.pptx`
+**`insightqueries.txt` contains the queries used to get insights
