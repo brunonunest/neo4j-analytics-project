@@ -1,4 +1,4 @@
-This code is for the challenge WTX invited me to participate, more info below
+Data Analysis project example using neo4j + python
 
 # How to run
 
