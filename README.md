@@ -10,4 +10,5 @@ Data Analysis project example using neo4j + python
 6. After that check neo4j browser and bloom to see your database uploaded, you are ok to start your analysis and development
 
 **`insightqueries.txt` contains the queries used to get insights
+
 ** The problem and method to solve it presented at `presentation.pptx`
